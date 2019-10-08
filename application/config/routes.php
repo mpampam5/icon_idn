@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'front/front/index';
 $route['404_override'] = 'error/error404';
 $route['translate_uri_dashes'] = FALSE;
 //crud
@@ -103,3 +103,20 @@ $route['backend/pengaturan/umum_form/aksi'] = "backend/backend/pengaturan/umum_f
 //reset_pwd
 $route['backend/resetpwd'] = "backend/backend/resetpwd";
 $route['backend/resetpwd/action'] = "backend/backend/resetpwd/action";
+
+
+
+
+//front
+
+$route['home'] = "front/front/index";
+
+$route['daftar'] = "front/daftar_paket/form";
+$route['daftar/(:any)'] = "front/daftar_paket/form/$1";
+$route['action-form'] = "front/daftar_paket/action";
+$route['code-captcha'] = "front/daftar_paket/refresh_captcha";
+
+
+$route['pricelist'] = "front/pricelist";
+
+$route['kontak'] = "front/kontak";

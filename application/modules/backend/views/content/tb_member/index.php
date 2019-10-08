@@ -30,6 +30,7 @@
 											<th>NIK | Nama</th>
 											<th>Email</th>
 											<th>Telepon</th>
+                      <th>Status</th>
                       <th>#</th>
                     </tr>
                   </thead>
@@ -80,7 +81,7 @@ $(document).ready(function() {
             ajax: {"url": "<?=base_url()?>backend/tb_member/json", "type": "POST"},
             columns: [
                 {
-                    "data": "id_member",
+                    "data": "id_trans_member",
                     "orderable": false
                 },
 								{"data":"kode_registrasi",
@@ -97,6 +98,17 @@ $(document).ready(function() {
                 },
 								{"data":"email"},
 								{"data":"telepon"},
+                {"data":"is_active",
+                  render:function(data,type,row,meta)
+                  {
+                    if (data==1) {
+                      return '<span class="text-success text-center"> Aktif</span>';
+                    }else {
+                      return '<span class="text-danger text-center"> Nonaktif</span>';
+                    }
+                  }
+
+                },
                 {
                     "data" : "action",
                     "orderable": false,

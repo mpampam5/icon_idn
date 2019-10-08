@@ -31,8 +31,9 @@
       <div class="navbar-backdrop">
         <div class="navbar">
           <div class="navbar-left">
-            <!-- <a class="navbar-toggle"><i class="fa fa-bars"></i></a> <img src="<?=config_item('sty_back')?>img/logo.png" alt="logo">-->
-            <a href="#" class="logo"> <h1 class="text-logo"><?=setting('title')?></h1></a>
+            <!-- <a class="navbar-toggle"><i class="fa fa-bars"></i></a> -->
+             <img src="<?=base_url()?>temp/logo.png" alt="logo" class="logos">
+            <!-- <a href="#" class="logo"> <h1 class="text-logo"><?=setting('title')?></h1></a> -->
           </div>
 
 

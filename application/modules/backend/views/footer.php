@@ -61,6 +61,10 @@
             $('#modalTitle, #modalContent').html('');
           }, 500);
     });
+
+    $('.table').on('draw.dt', function () {
+                        $('[data-toggle="tooltip"]').tooltip();
+                    });
   </script>
 
 

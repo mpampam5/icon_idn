@@ -17,8 +17,44 @@
                 </div>
 
                 <div class="form-group">
+                    <label  for="">Email</label>
+                    <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="<?=$email?>">
+                </div>
+
+                <div class="form-group">
                     <label  for="">Alamat</label>
                     <textarea class="form-control" name="alamat" id="alamat" cols="30" rows="3" placeholder="Alamat"><?=$alamat?></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label  for="">Tentang</label>
+                    <textarea class="form-control" name="tentang" id="tentang" cols="30" rows="10" placeholder="Tentang"><?=$tentang?></textarea>
+                </div>
+
+
+
+
+
+                <h4>social media</h4>
+
+                <div class="form-group">
+                    <label  for="">Title Instagram</label>
+                    <input type="text" class="form-control" name="title_instagram" id="title_instagram" placeholder="Title Instagram" value="<?=$title_instagram?>">
+                </div>
+
+                <div class="form-group">
+                    <label  for="">Instagram</label>
+                    <input type="text" class="form-control" name="instagram" id="instagram" placeholder="link Instagram" value="<?=$instagram?>">
+                </div>
+
+                <div class="form-group">
+                    <label  for="">Title Facebook</label>
+                    <input type="text" class="form-control" name="title_facebook" id="title_facebook" placeholder="Title Facebook" value="<?=$title_facebook?>">
+                </div>
+
+                <div class="form-group">
+                    <label  for="">Facebook</label>
+                    <input type="text" class="form-control" name="facebook" id="facebook" placeholder="Link Facebook" value="<?=$facebook?>">
                 </div>
 
                 <div>

@@ -14,9 +14,47 @@
     <td>: <?=$telepon?></td>
 </tr>
 
+
+<tr>
+    <th>Email</th>
+    <td>: <?=$email?></td>
+</tr>
+
 <tr>
     <th>Alamat</th>
     <td>: <?=$alamat?></td>
+</tr>
+
+<tr>
+    <th>Tentang</th>
+    <td>: <?=$tentang?></td>
+</tr>
+
+<tr>
+  <td colspan="2">
+    <h5 style="color:#0e79bd;font-size:16px;">Sosial media</h5>
+  </td>
+</tr>
+
+
+<tr>
+  <th>Instagram</th>
+  <td>: <?=$title_instagram?></td>
+</tr>
+
+<tr>
+  <th>Url Instagram</th>
+  <td>: <?=$instagram?></td>
+</tr>
+
+<tr>
+  <th>Facebook</th>
+  <td>: <?=$title_facebook?></td>
+</tr>
+
+<tr>
+  <th>Url Facebook</th>
+  <td>: <?=$facebook?></td>
 </tr>
 </table>
 

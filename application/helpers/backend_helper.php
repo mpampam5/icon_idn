@@ -57,6 +57,30 @@ function cmb_dimanis($id,$name,$table,$id_field,$field,$pk)
 }
 
 
+function get_add_member($str,$id)
+{
+  $ci =get_instance();
+  if ($str=="marketing") {
+    $query = $ci->db->select("id_marketing,nama")
+                ->from("tb_marketing")
+                ->where("id_marketing",$id)
+                ->get()
+                ->row();
+    $str_values = $query->nama;
+  }elseif ($str=="admin") {
+    $query = $ci->db->select("id_users,last_name,first_name")
+                ->from("users")
+                ->where("id_users",$id)
+                ->get()
+                ->row();
+    $str_values = $query->first_name." ".$query->last_name;
+  }
+
+
+  return $str_values;
+}
+
+
 
 function umur($tgl_lahir,$delimiter='-') {
     list($hari,$bulan,$tahun) = explode($delimiter, $tgl_lahir);
@@ -73,5 +97,28 @@ function umur($tgl_lahir,$delimiter='-') {
 
 function format_rupiah($int)
 {
-  return number_format($int, 2, ',', '.');
+  return number_format($int, 0, ',', '.');
+}
+
+function member_add($from_add,$id_person)
+{
+  $ci =get_instance();
+  if ($from_add=="admin") {
+      $query = $ci->db->get_where('users',["id_users"=>$id_person])->row();
+      $first_name = $query->first_name;
+      $last_name = $query->last_name;
+      return $first_name." ".$last_name;
+  }elseif ($from_add=="marketing") {
+    $query = $ci->db->get_where('tb_marketing',["id_marketing"=>$id_person])->row();
+    return $query->nama;
+  }else {
+    return "-";
+  }
+}
+
+function hitung_masa_berlaku($id_paket)
+{
+  $ci =get_instance();
+  $query = $ci->db->get_where('paket',["id_paket"=>$id_paket])->row();
+  return $query->jangka_waktu * 365;
 }

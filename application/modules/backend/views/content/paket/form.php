@@ -29,21 +29,21 @@
 
 												<div class="col-md-12">
                           <div class="form-group">
-                            <label>Harga Paket</label>
+                            <label>Harga Paket (Rp)</label>
                             <input type="text" class="form-control" id="harga_paket" name="harga_paket" placeholder="Harga Paket" value="<?=$harga_paket?>">
                           </div>
                         </div>
 
 												<div class="col-md-12">
                           <div class="form-group">
-                            <label>Harga Harian</label>
+                            <label>Harga Harian (Rp)</label>
                             <input type="text" class="form-control" id="harga_harian" name="harga_harian" placeholder="Harga Harian" value="<?=$harga_harian?>">
                           </div>
                         </div>
 
 												<div class="col-md-12">
                           <div class="form-group">
-                            <label>Jangka Waktu</label>
+                            <label>Jangka Waktu (tahun)</label>
                             <input type="text" class="form-control" id="jangka_waktu" name="jangka_waktu" placeholder="Jangka Waktu" value="<?=$jangka_waktu?>">
                           </div>
                         </div>

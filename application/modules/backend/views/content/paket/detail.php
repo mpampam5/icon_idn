@@ -1,3 +1,10 @@
+<style media="screen">
+  .table-detail tr th,td{
+    font-size: 12px;
+    padding: 10px;
+  }
+</style>
+
 <section class="breadcrumbs">
    <div class="container">
      <ol class="breadcrumb">
@@ -20,31 +27,31 @@
                <div class="card-block">
                    <div class="row">
                      <div class="col-md-12">
-                       <table class="table table-bordered">
+                       <table class="tabel-detail">
 
 													<tr>
                              <th>Nama Paket</th>
-                             <td><?=$nama_paket?></td>
+                             <td> : <?=$nama_paket?></td>
                           </tr>
 
 													<tr>
                              <th>Harga Paket</th>
-                             <td><?=$harga_paket?></td>
+                             <td> : Rp.<?=format_rupiah($harga_paket)?></td>
                           </tr>
 
 													<tr>
                              <th>Harga Harian</th>
-                             <td><?=$harga_harian?></td>
+                             <td> : Rp.<?=format_rupiah($harga_harian)?></td>
                           </tr>
 
 													<tr>
                              <th>Jangka Waktu</th>
-                             <td><?=$jangka_waktu?></td>
+                             <td> : <?=$jangka_waktu?> / tahun</td>
                           </tr>
 
 													<tr>
                              <th>Keterangan</th>
-                             <td><?=$keterangan?></td>
+                             <td> : <?=$keterangan?></td>
                           </tr>
 
 

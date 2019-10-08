@@ -26,7 +26,13 @@ class Pengaturan extends Backend{
               "title"  => $row->title,
               "domain" => $row->domain,
               "telepon"=> $row->telepon,
-              "alamat" => $row->alamat
+              "email" => $row->email,
+              "alamat" => $row->alamat,
+              "tentang" => $row->tentang,
+              "title_instagram" => $row->title_instagram,
+              "instagram" => $row->instagram,
+              "title_facebook" => $row->title_facebook,
+              "facebook" => $row->facebook,
           ];
           $this->temp_backend->view("backend/backend/pengaturan/umum_view",$data,false);
       }else {
@@ -44,10 +50,16 @@ class Pengaturan extends Backend{
 
             $this->form_validation->set_rules("title","Title","trim|required|xss_clean|max_length[50]");
             $this->form_validation->set_rules("domain","Domain","trim|required|xss_clean|max_length[150]");
+            $this->form_validation->set_rules("email","Email","trim|required|xss_clean|max_length[150]");
             $this->form_validation->set_rules("telepon","Telepon","trim|required|xss_clean|numeric|max_length[15]",[
                 "numeric"=>"{field} tidak valid."
             ]);
-            $this->form_validation->set_rules("alamat","alamat","trim|xss_clean");
+            $this->form_validation->set_rules("title_instagram","title instagram","trim|required|xss_clean|max_length[255]");
+            $this->form_validation->set_rules("instagram","Link instagram","trim|required|xss_clean|max_length[255]");
+            $this->form_validation->set_rules("title_facebook","title facebook","trim|required|xss_clean|max_length[255]");
+            $this->form_validation->set_rules("facebook","Link facebook","trim|required|xss_clean|max_length[255]");
+            $this->form_validation->set_rules("alamat","alamat","trim|xss_clean|required");
+            $this->form_validation->set_rules("tentang","Tentang","trim|xss_clean|required");
             $this->form_validation->set_error_delimiters('<small class="form-text"><b class="text-danger">','</b></small>');
 
             if ($this->form_validation->run()) {
@@ -55,7 +67,13 @@ class Pengaturan extends Backend{
                             "title"  => $this->input->post("title",true),
                             "domain" => $this->input->post("domain",true),
                             "telepon"=> $this->input->post("telepon",true),
-                            "alamat" => $this->input->post("alamat",true)
+                            "email" => $this->input->post("email",true),
+                            "alamat" => $this->input->post("alamat",true),
+                            "title_instagram" => $this->input->post("title_instagram",true),
+                            "instagram" => $this->input->post("instagram",true),
+                            "title_facebook" => $this->input->post("title_facebook",true),
+                            "facebook" => $this->input->post("facebook",true),
+                            "tentang" => $this->input->post("tentang",true),
                             ];
                 $this->model->get_update($this->table,$update,["id"=>999]);
 
@@ -75,7 +93,13 @@ class Pengaturan extends Backend{
                     "title"  => $row->title,
                     "domain" => $row->domain,
                     "telepon"=> $row->telepon,
-                    "alamat" => $row->alamat
+                    "email" => $row->email,
+                    "alamat" => $row->alamat,
+                    "title_instagram" => $row->title_instagram,
+                    "instagram" => $row->instagram,
+                    "title_facebook" => $row->title_facebook,
+                    "facebook" => $row->facebook,
+                    "tentang" => $row->tentang,
                 ];
             $this->temp_backend->view("backend/backend/pengaturan/umum",$data,false);
             }else {

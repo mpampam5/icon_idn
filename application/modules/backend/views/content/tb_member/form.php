@@ -1,3 +1,9 @@
+<link rel="stylesheet" href="<?=config_item('sty_back')?>plugins/datepicker/css/bootstrap-datepicker.min.css" />
+<script type="text/javascript" src="<?=config_item('sty_back')?>plugins/datepicker/js/bootstrap-datepicker.min.js"></script>
+<!--
+<link rel="stylesheet" href="<?=config_item('sty_back')?>plugins/selectpicker/css/bootstrap-select.min.css" />
+<script type="text/javascript" src="<?=config_item('sty_back')?>plugins/selectpicker/js/bootstrap-select.min.js"></script> -->
+
 <section class="breadcrumbs">
   <div class="container">
     <ol class="breadcrumb">
@@ -20,82 +26,105 @@
               <div class="card-block">
                   <div class="row">
 
-												<div class="col-md-12">
+												<div class="col-md-6">
                           <div class="form-group">
                             <label>Nik</label>
                             <input type="text" class="form-control" id="nik" name="nik" placeholder="Nik" value="<?=$nik?>">
                           </div>
                         </div>
 
-												<div class="col-md-12">
+												<div class="col-md-6">
                           <div class="form-group">
                             <label>Nama</label>
                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" value="<?=$nama?>">
                           </div>
                         </div>
 
-												<div class="col-md-12">
+												<div class="col-md-6">
                           <div class="form-group">
                             <label>Email</label>
                             <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="<?=$email?>">
                           </div>
                         </div>
 
-												<div class="col-md-12">
+												<div class="col-md-6">
                           <div class="form-group">
                             <label>Telepon</label>
                             <input type="text" class="form-control" id="telepon" name="telepon" placeholder="Telepon" value="<?=$telepon?>">
                           </div>
                         </div>
 
-												<div class="col-md-12">
-                          <div class="form-group">
-                            <label>Alamat</label>
-                            <textarea class="form-control" id="alamat" name="alamat" placeholder="Alamat" rows="3" cols="80"><?=$alamat?></textarea>
-                          </div>
-                        </div>
-
-												<div class="col-md-12">
-                          <div class="form-group">
-                            <label>Jenis Kelamin</label>
-                            <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin" placeholder="Jenis Kelamin" value="<?=$jenis_kelamin?>">
-                          </div>
-                        </div>
-
-												<div class="col-md-12">
+                        <div class="col-md-6">
                           <div class="form-group">
                             <label>Tempat Lahir</label>
                             <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir" value="<?=$tempat_lahir?>">
                           </div>
                         </div>
 
-												<div class="col-md-12">
+												<div class="col-md-6">
                           <div class="form-group">
                             <label>Tanggal Lahir</label>
-                            <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Tanggal Lahir" value="<?=$tanggal_lahir?>">
+                            <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Tanggal Lahir" autocomplete="off">
                           </div>
                         </div>
 
-												<div class="col-md-12">
+												<div class="col-md-6">
                           <div class="form-group">
-                            <label>Image</label>
-                            <input type="text" class="form-control" id="image" name="image" placeholder="Image" value="<?=$image?>">
+                            <label>Jenis Kelamin</label>
+                            <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
+                              <option value=""> -- pilih --</option>
+                              <option <?= $jenis_kelamin=="pria" ? "selected" : ""?> value="pria">Pria</option>
+                              <option <?= $jenis_kelamin=="wanita" ? "selected" : ""?> value="wanita">Wanita</option>
+                            </select>
                           </div>
                         </div>
 
-												<div class="col-md-12">
+                        <div class="col-md-6">
                           <div class="form-group">
-                            <label>Created</label>
-                            <input type="text" class="form-control" id="created" name="created" placeholder="Created" value="<?=$created?>">
+                            <label>Paket</label>
+                              <?=cmb_dimanis("id_paket","id_paket","paket","id_paket","nama_paket",$id_paket)?>
                           </div>
                         </div>
 
-												<div class="col-md-12">
+                        <div class="col-md-3">
                           <div class="form-group">
-                            <label>Modified</label>
-                            <input type="text" class="form-control" id="modified" name="modified" placeholder="Modified" value="<?=$modified?>">
+                            <label>Status Aktif</label>
+                            <select class="form-control" id="is_active" name="is_active">
+                              <option value=""> -- pilih --</option>
+                              <option <?= $is_active=='1' ? "selected" : ""?> value="1">Aktif</option>
+                              <option <?= $is_active=='0' ? "selected" : ""?> value="0">Nonaktif</option>
+                            </select>
                           </div>
                         </div>
+
+                        <?php if ($button=="tambah"): ?>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>di tambahkan oleh</label>
+                              <select class="form-control" id="from_add" name="from_add">
+                                <option value=""> -- pilih --</option>
+                                <option <?= $from_add=='admin' ? "selected" : ""?> value="admin">Admin</option>
+                                <option <?= $from_add=='marketing' ? "selected" : ""?> value="marketing">Marketing</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div id="personals"></div>
+                        <?php endif; ?>
+
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Alamat</label>
+                            <textarea class="form-control" id="alamat" name="alamat" placeholder="Alamat" rows="3" cols="80"><?=$alamat?></textarea>
+                          </div>
+                        </div>
+
+
+                        <?php if ($button=="edit"): ?>
+                          <input type="hidden" name="created" value="<?=$created?>">
+                        <?php endif; ?>
+
+
 
                   </div>
               </div>
@@ -113,6 +142,43 @@
 </section>
 
 <script type="text/javascript">
+
+$(document).ready(function(){
+  $("#tanggal_lahir").datepicker({
+    format: 'yyyy-mm-dd',
+  }).val("<?=$tanggal_lahir?>").on('change', function(){
+        $('.datepicker').hide();
+    });;
+});
+
+
+<?php if ($button=="tambah"): ?>
+$("#from_add").change(function () {
+  var from_add = $("#from_add :selected").val();
+  // alert(from_add);
+  if (from_add=="admin") {
+    $('.id_personals').remove();
+    $("#personals").after(`<input type="hidden" class="id_personals" name="id_personals" id="id_personals" value="<?=session('id_users')?>">`);
+  }else if (from_add=="marketing") {
+    $(".id_personals").remove();
+    $.get('<?php echo site_url('backend/tb_member/marketing') ?>', function(data){
+                        $('#personals').after(`
+                                                <div class="col-md-4 id_personals">
+                                                  <div class="form-group">
+                                                    <label>Pilih marketing</label>
+                                                    <select class="form-control" id="id_personals" name="id_personals">
+                                                      `+data+`
+                                                    </select>
+                                                  </div>
+                                                </div>
+                                              `);
+                    });
+  }else {
+      $(".id_personals").remove();
+  }
+});
+<?php endif; ?>
+
   $("#form").submit(function(e){
       e.preventDefault();
       var me = $(this);

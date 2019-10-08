@@ -35,7 +35,7 @@ element.style {
                       <ul class="nav nav-tabs nav-icon-left" role="tablist">
                         <li class="nav-item"><a class="nav-link active" href="<?=site_url("backend/pengaturan/umum")?>" aria-controls="pengaturan-umum" role="tab" data-toggle="tab" data-target="#pengaturan-umum" id="pengaturan-umum"><i class="fa fa-cog"></i> Profile</a></li>
 
-                        <li class="nav-item"><a class="nav-link" href="<?=site_url("backend/pengaturan/logo")?>" aria-controls="pengaturan" role="tab" data-toggle="tab" data-target="#pengaturan-logo" id="pengaturan-logo"><i class="fa fa-picture-o"></i> Logo</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="<?=site_url("backend/pengaturan/logo")?>" aria-controls="pengaturan" role="tab" data-toggle="tab" data-target="#pengaturan-logo" id="pengaturan-logo"><i class="fa fa-picture-o"></i> Logo</a></li> -->
                       </ul>
 
                       <div class="tab-content" id="load-content"></div>
