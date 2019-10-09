@@ -1299,3 +1299,13 @@
 .tag-list li a.btn {
   margin: 0 2px 2px 0;
 }
+
+.content-for{
+  background-color: rgba(28, 28, 28, 0.43);
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;
+  min-height: 200px;
+  /* opacity: 0.7; */
+  /* border-radius: 5px 5px 5px 5px; */
+}

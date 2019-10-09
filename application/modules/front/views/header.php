@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="shortcut icon" href="<?=base_url()?>temp/front/images/favicon.ico">
+<meta name="description" content="Elosi Studio, menyediakan jasa fotografi di daerah Makassar, sulawesi selatan dengan background kekinian untuk mengisi konten Media Sosial anda. Mulai dari foto prawedding, graduation, couple, family, maternity, baby, grup, product dll. Ayo foto di Elosi Studio dengan fotografer yang terpercaya dengan harga terjangkau dan hasil memuaskan.">
+<meta name="author" content="mpampam.com">
+
+<link rel="shortcut icon" href="<?=base_url()?>temp/front/images/favicon.png">
 <title><?=strtoupper(profile("title"))?></title>
 <!-- Bootstrap core CSS -->
 <link href="<?=base_url()?>temp/front/css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +58,7 @@
   <nav class="navbar solid dark">
     <div class="navbar-header">
       <div class="basic-wrapper">
-        <div class="navbar-brand"> <a href="index.html"><img src="#" srcset="<?=base_url()?>temp/front/images/logo2.png 1x, <?=base_url()?>temp/front/images/logo@2x.png 2x" class="logo-light" alt="" /><img src="#" srcset="<?=base_url()?>temp/front/images/logo-dark.png 1x, <?=base_url()?>temp/front/images/logo-dark@2x.png 2x" class="logo-dark" alt="" /></a> </div>
+        <div class="navbar-brand"> <a href="<?=site_url()?>"><img src="#" srcset="<?=base_url()?>temp/front/images/logo2.png 1x, <?=base_url()?>temp/front/images/logo@2x.png 2x" class="logo-light" alt="" /><img src="#" srcset="<?=base_url()?>temp/front/images/logo-dark.png 1x, <?=base_url()?>temp/front/images/logo-dark@2x.png 2x" class="logo-dark" alt="" /></a> </div>
         <a class="btn responsive-menu" data-toggle="collapse" data-target=".navbar-collapse"><i></i></a>
       </div>
       <!-- /.basic-wrapper -->
@@ -66,7 +67,14 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li><a href="<?=site_url()?>">Home </a></li>
-        <li><a href="<?=site_url()?>">Portofolio </a></li>
+        <li class="dropdown"><a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Portfolio <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <?php $portofolio = $this->db->get("portofolio"); ?>
+            <?php foreach ($portofolio->result() as $portofolio): ?>
+              <li><a href="<?=site_url("portofolio/$portofolio->id_portofolio/$portofolio->nama")?>"><?=$portofolio->nama?></a></li>
+            <?php endforeach; ?>
+          </ul>
+        </li>
         <li><a href="<?=site_url("pricelist")?>">Pricelist </a></li>
         <li><a href="<?=site_url("daftar")?>">Dapatkan Voucher </a></li>
         <li><a href="<?=site_url("kontak")?>">Kontak </a></li>

@@ -120,3 +120,6 @@ $route['code-captcha'] = "front/daftar_paket/refresh_captcha";
 $route['pricelist'] = "front/pricelist";
 
 $route['kontak'] = "front/kontak";
+
+
+$route['portofolio/(:num)/(:any)'] = "front/portofolio/detail/$1/$2";

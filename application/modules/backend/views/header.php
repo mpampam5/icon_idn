@@ -42,7 +42,6 @@
               <li class="dropdown dropdown-profile">
                 <a href="login.html" data-toggle="dropdown"> <span> <?=session("name");?></span></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
                   <a class="dropdown-item" id="resetpwd" href="<?=site_url("backend/resetpwd")?>"><i class="fa fa-key"></i> Ganti Password</a>
                   <a class="dropdown-item" href="<?=site_url("adm-logout")?>" id="sign-out"><i class="fa fa-sign-out"></i> Keluar</a>
                 </div>

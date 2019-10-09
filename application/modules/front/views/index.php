@@ -43,43 +43,29 @@
 
       <div class="blog grid-view col3">
     <div class="blog-posts text-boxes">
-      <div class="isotope row" style="position: relative; height: 6083.45px;">
-        <div class="col-sm-6 col-md-4 grid-view-post">
+      <div class="row" style="position: relative;">
+        <?php $portofolio = $this->db->limit(3)->get("portofolio"); ?>
+        <?php foreach ($portofolio->result() as $portofolio): ?>
+          <?php $for_image = $this->db->where(["id_portofolio"=>$portofolio->id_portofolio])
+                                      ->limit(1)
+                                      ->get("image")
+                                      ->row();
+           ?>
+        <div class="col-sm-4">
           <div class="post">
-            <figure class="main"><a href="blog-post.html"><img src="<?=base_url()?>temp/front/images/art/b1.jpg" alt=""></a></figure>
+            <figure class="main">
+              <a href="<?=site_url("portofolio/$portofolio->id_portofolio/$portofolio->nama")?>">
+                <div class="content-for" style="background-image:url('<?=base_url()?>temp/file/<?=$for_image->name?>')"></div>
+              </a>
+            </figure>
             <div class="box text-center">
-              <div class="category cat12"><span><a href="#">Couple</a></span></div>
+              <div class="category cat12"><span><a href="<?=site_url("portofolio/$portofolio->id_portofolio/$portofolio->nama")?>"><?=strtoupper($portofolio->nama)?></a></span></div>
             </div>
             <!-- /.box -->
           </div>
         </div>
         <!-- /column -->
-
-        <div class="col-sm-6 col-md-4 grid-view-post">
-          <div class="item post">
-            <figure class="main"><a href="blog-post.html"><img src="<?=base_url()?>temp/front/images/art/b2.jpg" alt=""></a></figure>
-            <div class="box text-center">
-              <div class="category cat12"><span><a href="#">Prawedding</a></span></div>
-            </div>
-            <!-- /.box -->
-
-          </div>
-          <!-- /.post -->
-        </div>
-        <!-- /column -->
-
-        <div class="col-sm-6 col-md-4 grid-view-post">
-          <div class="item post">
-            <figure class="main"><a href="blog-post.html"><img src="<?=base_url()?>temp/front/images/art/b2.jpg" alt=""></a></figure>
-            <div class="box text-center">
-              <div class="category cat12"><span><a href="#">GROUP</a></span></div>
-            </div>
-            <!-- /.box -->
-
-          </div>
-          <!-- /.post -->
-        </div>
-        <!-- /column -->
+        <?php endforeach; ?>
 
 
 

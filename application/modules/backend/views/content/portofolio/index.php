@@ -15,11 +15,11 @@
 <section>
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 mx-auto">
+      <div class="col-lg-10 mx-auto">
         <div class="card">
             <div class="card-header">
               <h5 class="card-title">List <?=ucfirst($temp_title)?></h5>
-              <a href="<?=site_url('backend/marketing/add')?>" style="position:absolute;right:10px;" class="btn btn-sm btn-primary btn-xs btn-icon-right">Tambah <i class="fa fa-plus"></i></a>
+              <a href="<?=site_url('backend/portofolio/add')?>" style="position:absolute;right:10px;" class="btn btn-sm btn-primary btn-xs btn-icon-right">Tambah <i class="fa fa-plus"></i></a>
             </div>
               <div class="card-block">
                 <table class="table table-bordered" width="100%" id="table">
@@ -27,9 +27,6 @@
                     <tr>
                       <th width="50px">No</th>
 											<th>Nama</th>
-											<th>Telepon</th>
-											<th>Email</th>
-                      <th>Status</th>
                       <th>#</th>
                     </tr>
                   </thead>
@@ -76,25 +73,13 @@ $(document).ready(function() {
             },
             processing: true,
             serverSide: true,
-            ajax: {"url": "<?=base_url()?>backend/marketing/json", "type": "POST"},
+            ajax: {"url": "<?=base_url()?>backend/portofolio/json", "type": "POST"},
             columns: [
                 {
-                    "data": "id_marketing",
+                    "data": "id_portofolio",
                     "orderable": false
                 },
 								{"data":"nama"},
-								{"data":"telepon"},
-								{"data":"email"},
-                {"data":"is_active",
-                  render:function(data,meta,type,row)
-                  {
-                    if (data=="1") {
-                      return '<span class="text-success"> Aktif</span>';
-                    }else {
-                      return '<span class="text-danger"> Nonaktif</span>';
-                    }
-                  }
-                },
                 {
                     "data" : "action",
                     "orderable": false,
@@ -110,16 +95,6 @@ $(document).ready(function() {
                 $('td:eq(0)', row).html(index);
             }
         });
-});
-
-$(document).on('click','#reset_pass',function(e){
-  e.preventDefault();
-  $('.modal-dialog').removeClass('modal-lg')
-                    .removeClass('modal-md')
-                    .addClass('modal-sm');
-  $('#modalContent').load($(this).attr('href'));
-  $("#modalTitle").text('Reset Password');
-  $("#modalGue").modal('show');
 });
 
 

@@ -2,7 +2,7 @@
   <div class="container">
     <ol class="breadcrumb">
       <li><a href="<?=site_url('backend')?>">Home</a></li>
-      <li><a href="<?=site_url('backend/marketing')?>"><?=ucfirst($temp_title)?></a></li>
+      <li><a href="<?=site_url('backend/portofolio')?>"><?=ucfirst($temp_title)?></a></li>
       <li class="active"><?=ucfirst($button)?></li>
     </ol>
   </div>
@@ -20,46 +20,19 @@
               <div class="card-block">
                   <div class="row">
 
-												<div class="col-md-6">
+												<div class="col-md-12">
                           <div class="form-group">
                             <label>Nama</label>
                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" value="<?=$nama?>">
                           </div>
                         </div>
 
-												<div class="col-md-6">
-                          <div class="form-group">
-                            <label>Telepon</label>
-                            <input type="text" class="form-control" id="telepon" name="telepon" placeholder="Telepon" value="<?=$telepon?>">
-                          </div>
-                        </div>
-
-												<div class="col-md-6">
-                          <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="<?=$email?>">
-                          </div>
-                        </div>
-
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Status Aktif</label>
-                            <select class="form-control" name="status" id="status">
-                              <option <?= $is_active=="1" ? "selected" : ""?> value="1">Aktif</option>
-                              <option <?= $is_active=="0" ? "selected" : ""?> value="0">Nonaktif</option>
-                            </select>
-                          </div>
-                        </div>
-
 												<div class="col-md-12">
                           <div class="form-group">
-                            <label>Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" value="<?=$alamat?>">
+                            <label>Keterangan</label>
+                            <textarea class="form-control" id="keterangan" name="keterangan" placeholder="Keterangan" rows="3" cols="80"><?=$keterangan?></textarea>
                           </div>
                         </div>
-
-
-
 
                   </div>
               </div>

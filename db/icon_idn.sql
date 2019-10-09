@@ -11,7 +11,7 @@
  Target Server Version : 50532
  File Encoding         : 65001
 
- Date: 09/10/2019 02:03:09
+ Date: 10/10/2019 02:12:42
 */
 
 SET NAMES utf8mb4;
@@ -26,13 +26,13 @@ CREATE TABLE `groups`  (
   `name` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `description` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   PRIMARY KEY (`id_groups`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of groups
 -- ----------------------------
 INSERT INTO `groups` VALUES (8, 'superadmin', 'superadmin');
-INSERT INTO `groups` VALUES (12, 'Operator', 'Operator');
+INSERT INTO `groups` VALUES (13, 'admin', '');
 
 -- ----------------------------
 -- Table structure for groups_menus
@@ -47,23 +47,52 @@ CREATE TABLE `groups_menus`  (
   INDEX `id_groups`(`id_groups`) USING BTREE,
   CONSTRAINT `groups_menus_ibfk_1` FOREIGN KEY (`id_groups`) REFERENCES `groups` (`id_groups`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `groups_menus_ibfk_2` FOREIGN KEY (`id_menus`) REFERENCES `menus` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 307 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 336 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of groups_menus
 -- ----------------------------
-INSERT INTO `groups_menus` VALUES (102, 12, 1);
-INSERT INTO `groups_menus` VALUES (296, 8, 1);
-INSERT INTO `groups_menus` VALUES (297, 8, 27);
-INSERT INTO `groups_menus` VALUES (298, 8, 24);
-INSERT INTO `groups_menus` VALUES (299, 8, 29);
-INSERT INTO `groups_menus` VALUES (300, 8, 23);
-INSERT INTO `groups_menus` VALUES (301, 8, 22);
-INSERT INTO `groups_menus` VALUES (302, 8, 11);
-INSERT INTO `groups_menus` VALUES (303, 8, 10);
-INSERT INTO `groups_menus` VALUES (304, 8, 15);
-INSERT INTO `groups_menus` VALUES (305, 8, 8);
-INSERT INTO `groups_menus` VALUES (306, 8, 18);
+INSERT INTO `groups_menus` VALUES (307, 8, 1);
+INSERT INTO `groups_menus` VALUES (308, 8, 27);
+INSERT INTO `groups_menus` VALUES (309, 8, 24);
+INSERT INTO `groups_menus` VALUES (310, 8, 29);
+INSERT INTO `groups_menus` VALUES (311, 8, 30);
+INSERT INTO `groups_menus` VALUES (312, 8, 23);
+INSERT INTO `groups_menus` VALUES (313, 8, 22);
+INSERT INTO `groups_menus` VALUES (314, 8, 11);
+INSERT INTO `groups_menus` VALUES (315, 8, 10);
+INSERT INTO `groups_menus` VALUES (316, 8, 15);
+INSERT INTO `groups_menus` VALUES (317, 8, 8);
+INSERT INTO `groups_menus` VALUES (328, 13, 1);
+INSERT INTO `groups_menus` VALUES (329, 13, 27);
+INSERT INTO `groups_menus` VALUES (330, 13, 24);
+INSERT INTO `groups_menus` VALUES (331, 13, 29);
+INSERT INTO `groups_menus` VALUES (332, 13, 30);
+INSERT INTO `groups_menus` VALUES (333, 13, 23);
+INSERT INTO `groups_menus` VALUES (334, 13, 22);
+INSERT INTO `groups_menus` VALUES (335, 13, 15);
+
+-- ----------------------------
+-- Table structure for image
+-- ----------------------------
+DROP TABLE IF EXISTS `image`;
+CREATE TABLE `image`  (
+  `id_image` int(11) NOT NULL AUTO_INCREMENT,
+  `id_portofolio` int(11) NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  PRIMARY KEY (`id_image`, `name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of image
+-- ----------------------------
+INSERT INTO `image` VALUES (2, 1, 'portofolio_091019225416.jpg');
+INSERT INTO `image` VALUES (3, 1, 'portofolio_091019225708.jpg');
+INSERT INTO `image` VALUES (4, 1, 'portofolio_091019231125.jpg');
+INSERT INTO `image` VALUES (10, 1, 'portofolio_101019010804.jpg');
+INSERT INTO `image` VALUES (11, 2, 'portofolio_101019012021.jpg');
+INSERT INTO `image` VALUES (12, 2, 'portofolio_101019012026.jpg');
+INSERT INTO `image` VALUES (17, 3, 'portofolio_101019014351.jpg');
 
 -- ----------------------------
 -- Table structure for kategori
@@ -98,26 +127,26 @@ CREATE TABLE `menus`  (
   `sort` int(11) NOT NULL,
   `is_active` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of menus
 -- ----------------------------
 INSERT INTO `menus` VALUES (1, 'Beranda', 'home', 'fa fa-home', 'Beranda', 0, 1, 1);
-INSERT INTO `menus` VALUES (2, 'Pengaturan', 'pengaturan', 'fa fa-cogs', 'pengaturan', 0, 12, 1);
-INSERT INTO `menus` VALUES (8, 'Manajemen Menu', 'menus', 'fa fa-file-text-o', 'Manajemen Menu', 2, 14, 1);
-INSERT INTO `menus` VALUES (9, 'Manajemen Admin', '#', 'fa fa-users', 'Manajemen Admin', 0, 9, 1);
-INSERT INTO `menus` VALUES (10, 'admin', 'users', 'fa fa-circle', 'admin', 9, 11, 1);
-INSERT INTO `menus` VALUES (11, 'Groups', 'groups', 'fa fa-circle', 'Groups', 9, 10, 1);
-INSERT INTO `menus` VALUES (15, 'Pengaturan', 'pengaturan', 'fa fa-circle', 'Pengaturan', 2, 13, 1);
-INSERT INTO `menus` VALUES (18, 'crud generator', 'mpampam-crud', 'fa fa-file-code-o', 'crud generator', 0, 15, 1);
-INSERT INTO `menus` VALUES (21, 'Layanan', '#', 'fa fa-camera', 'Layanan', 0, 6, 1);
-INSERT INTO `menus` VALUES (22, 'Kategori Layanan', 'kategori_layanan', 'fa fa-circle', 'Kategori Layanan', 21, 8, 1);
-INSERT INTO `menus` VALUES (23, 'Paket Layanan', 'paket_layanan', 'fa fa-circle', 'Paket Layanan', 21, 7, 1);
+INSERT INTO `menus` VALUES (2, 'Pengaturan', 'pengaturan', 'fa fa-cogs', 'pengaturan', 0, 13, 1);
+INSERT INTO `menus` VALUES (8, 'Manajemen Menu', 'menus', 'fa fa-file-text-o', 'Manajemen Menu', 2, 15, 1);
+INSERT INTO `menus` VALUES (9, 'Manajemen Admin', '#', 'fa fa-users', 'Manajemen Admin', 0, 10, 1);
+INSERT INTO `menus` VALUES (10, 'admin', 'users', 'fa fa-circle', 'admin', 9, 12, 1);
+INSERT INTO `menus` VALUES (11, 'Groups', 'groups', 'fa fa-circle', 'Groups', 9, 11, 1);
+INSERT INTO `menus` VALUES (15, 'Pengaturan', 'pengaturan', 'fa fa-circle', 'Pengaturan', 2, 14, 1);
+INSERT INTO `menus` VALUES (21, 'Layanan', '#', 'fa fa-camera', 'Layanan', 0, 7, 1);
+INSERT INTO `menus` VALUES (22, 'Kategori Layanan', 'kategori_layanan', 'fa fa-circle', 'Kategori Layanan', 21, 9, 1);
+INSERT INTO `menus` VALUES (23, 'Paket Layanan', 'paket_layanan', 'fa fa-circle', 'Paket Layanan', 21, 8, 1);
 INSERT INTO `menus` VALUES (24, 'Paket member', 'paket', 'fa fa-circle', 'Paket member', 28, 4, 1);
 INSERT INTO `menus` VALUES (27, 'Member', 'tb_member', 'fa fa-users', 'Member', 28, 3, 1);
 INSERT INTO `menus` VALUES (28, 'Member', '#', 'fa fa-address-card', 'Member', 0, 2, 1);
 INSERT INTO `menus` VALUES (29, 'Marketing', 'Marketing', 'fa fa-group', 'Marketing', 0, 5, 1);
+INSERT INTO `menus` VALUES (30, 'Portofolio', 'Portofolio', 'fa fa-camera-retro', 'Portofolio', 0, 6, 1);
 
 -- ----------------------------
 -- Table structure for paket
@@ -168,6 +197,24 @@ INSERT INTO `paket_layanan` VALUES (7, 'Prewedding Indor', 1200000, NULL, 'free 
 INSERT INTO `paket_layanan` VALUES (8, 'Prewedding Outdor', 2500000, NULL, 'File Dan Cetak', 4);
 INSERT INTO `paket_layanan` VALUES (9, 'Ilustrasion', 2500000, NULL, 'Durasi 1 menit', 5);
 INSERT INTO `paket_layanan` VALUES (10, 'Instagram', 2500000, NULL, 'durasi 1 menit', 4);
+
+-- ----------------------------
+-- Table structure for portofolio
+-- ----------------------------
+DROP TABLE IF EXISTS `portofolio`;
+CREATE TABLE `portofolio`  (
+  `id_portofolio` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `keterangan` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  PRIMARY KEY (`id_portofolio`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of portofolio
+-- ----------------------------
+INSERT INTO `portofolio` VALUES (1, 'Prawedding', 'dsadsa');
+INSERT INTO `portofolio` VALUES (2, 'Coulpe', '');
+INSERT INTO `portofolio` VALUES (3, 'Group', '');
 
 -- ----------------------------
 -- Table structure for referral
@@ -231,12 +278,13 @@ CREATE TABLE `tb_marketing`  (
   `is_delete` enum('0','1') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '0',
   `is_active` enum('1','0') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_marketing`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb_marketing
 -- ----------------------------
 INSERT INTO `tb_marketing` VALUES (1, 'Muhammad Irfan Ibnus', '2132131231', 'aktivisuit@gmail.com', 'jl. mannuruki raya', 'mpampam', '$2y$10$ZGSz6s3yB0tdRM/amAChSOCnybJf/W8TzPduF162EOGcP9hbUloZC', '2019-09-22 08:01:16', '2019-09-22 10:02:07', '0', '1');
+INSERT INTO `tb_marketing` VALUES (2, 'dsadsa32131', '312321', 'aktivisuit@gmail.com', 'dsadsa', NULL, NULL, '2019-10-09 10:16:14', '2019-10-09 10:16:28', '1', '1');
 
 -- ----------------------------
 -- Table structure for tb_member
@@ -319,12 +367,13 @@ CREATE TABLE `users`  (
   `update_at` datetime NULL DEFAULT NULL,
   `active` enum('y','n') CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT 'y',
   PRIMARY KEY (`id_users`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (6, 'Muhammad', 'ippank', 'mpampam@mail.com', '39843890432', 'admin', '$2y$10$HsivkzwehMSImBhjtIID1.xuwAnbmyF8gmbz4OfvJQ5V1BFddOlK2', '20190311221640', NULL, '2019-10-08 22:58:20', '2019-03-11 22:16:40', NULL, 'y');
+INSERT INTO `users` VALUES (6, 'Muhammad', 'ippank', 'mpampam@mail.com', '39843890432', 'admin', '$2y$10$HsivkzwehMSImBhjtIID1.xuwAnbmyF8gmbz4OfvJQ5V1BFddOlK2', '20190311221640', NULL, '2019-10-09 23:55:17', '2019-03-11 22:16:40', NULL, 'y');
+INSERT INTO `users` VALUES (7, 'Andi', 'Lutfi  Hidayat', 'lutfi@gmail.com', '08526772989', 'elosilutfi', '$2y$10$44RRfUm3fUuPiegc1DhXZuorbwSpo7U.LnE1cTLKKam7t/PkuUBa6', '20191009235352', NULL, '2019-10-09 23:56:15', '2019-10-09 23:53:52', NULL, 'y');
 
 -- ----------------------------
 -- Table structure for users_groups
@@ -339,11 +388,12 @@ CREATE TABLE `users_groups`  (
   INDEX `id_groups`(`id_groups`) USING BTREE,
   CONSTRAINT `users_groups_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id_users`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `users_groups_ibfk_2` FOREIGN KEY (`id_groups`) REFERENCES `groups` (`id_groups`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of users_groups
 -- ----------------------------
 INSERT INTO `users_groups` VALUES (1, 6, 8);
+INSERT INTO `users_groups` VALUES (2, 7, 13);
 
 SET FOREIGN_KEY_CHECKS = 1;

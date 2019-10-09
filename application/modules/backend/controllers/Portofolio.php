@@ -1,41 +1,38 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-/* modules/backend/controllers/Marketing.php */
+/* modules/backend/controllers/Portofolio.php */
 /* MPAMPAM CRUD GENERATOR */
 /* PENGEMBANG : MPAMPAM */
 /* EMAIL : MPAMPAM5@GMAIL.COM */
 /* FACEBOOK : https://www.facebook.com/mpampam */
-/* DIBUAT OLEH MPAMPAM CRUD GENERTOR 2019-09-22 19:49:53 */
+/* DIBUAT OLEH MPAMPAM CRUD GENERTOR 2019-10-09 22:22:26 */
 /* https://mpampam.com */
 /* DI GUNAKAN OLEH USER Muhammad ippank */
 
 
-class Marketing extends Backend{
+class Portofolio extends Backend{
 
-	private $table = "tb_marketing";
+	private $table = "portofolio";
 
 	public function __construct()
   {
     parent::__construct();
     $this->load->library(array("datatables"));
-    $this->load->model("Marketing_model","model");
+    $this->load->model("Portofolio_model","model");
   }
 
 
 	function _rules()
 	{
-		$this->form_validation->set_rules("nama","Nama","trim|xss_clean|max_length[150]|required");
-		$this->form_validation->set_rules("telepon","Telepon","trim|xss_clean|max_length[30]|required|numeric");
-		$this->form_validation->set_rules("email","Email","trim|xss_clean|max_length[100]|required|valid_email");
-		$this->form_validation->set_rules("alamat","Alamat","trim|xss_clean|required");
-    $this->form_validation->set_rules("status","Status","trim|xss_clean|required");
+		$this->form_validation->set_rules("nama","Nama","trim|xss_clean|max_length[255]|required");
+		$this->form_validation->set_rules("keterangan","Keterangan","trim|xss_clean");
 		$this->form_validation->set_error_delimiters('<p class="form-text text-danger">','</p>');
 	}
 
 
 	function index()
   {
-    $this->temp_backend->set_title('Marketing');
-    $this->temp_backend->view('content/marketing/index');
+    $this->temp_backend->set_title('Portofolio');
+    $this->temp_backend->view('content/portofolio/index');
   }
 
 
@@ -46,19 +43,23 @@ class Marketing extends Backend{
   }
 
 
+  function json_image($id)
+  {
+    header('Content-Type: application/json');
+    echo $this->model->json_image($id);
+  }
+
+
 	function detail($id)
   {
-    if ($row = $this->model->get_where($this->table,['id_marketing'=>$id])) {
-      	$this->temp_backend->set_title('Marketing');
+    if ($row = $this->model->get_where($this->table,['id_portofolio'=>$id])) {
+      	$this->temp_backend->set_title('Portofolio');
         $data = [
-									'id_marketing' => $row->id_marketing,
+                  'id_portofolio'	=>	$row->id_portofolio,
 									'nama'	=>	$row->nama,
-									'telepon'	=>	$row->telepon,
-									'email'	=>	$row->email,
-									'alamat'	=>	$row->alamat,
-                  'is_active'	=>	$row->is_active,
+									'keterangan'	=>	$row->keterangan,
 								];
-      $this->temp_backend->view('content/marketing/detail',$data);
+      $this->temp_backend->view('content/portofolio/detail',$data);
     }else {
       $this->_error404();
     }
@@ -67,18 +68,15 @@ class Marketing extends Backend{
 
 function add()
 {
-    $this->temp_backend->set_title('Marketing');
+    $this->temp_backend->set_title('Portofolio');
       $data = [
                 'button' => 'tambah',
-                'action' => site_url('backend/marketing/add_action'),
+                'action' => site_url('backend/portofolio/add_action'),
 								'nama'	=>	set_value('nama'),
-								'telepon'	=>	set_value('telepon'),
-								'email'	=>	set_value('email'),
-								'alamat'	=>	set_value('alamat'),
-                'is_active'	=>	set_value('is_active'),
+								'keterangan'	=>	set_value('keterangan'),
 							];
 
-    $this->temp_backend->view('content/marketing/form',$data);
+    $this->temp_backend->view('content/portofolio/form',$data);
 }
 
 
@@ -90,11 +88,7 @@ function add_action()
       if ($this->form_validation->run()) {
         $insert = [
 										'nama'	=>	$this->input->post('nama',true),
-										'telepon'	=>	$this->input->post('telepon',true),
-										'email'	=>	$this->input->post('email',true),
-										'alamat'	=>	$this->input->post('alamat',true),
-                    'is_active'	=>	$this->input->post('status',true),
-										'created'	=>	date("Y-m-d h:i:s")
+										'keterangan'	=>	$this->input->post('keterangan',true),
 									];
 
         if ($this->model->get_insert($this->table,$insert)) {
@@ -124,20 +118,17 @@ function add_action()
 
 function update($id)
 {
-  if ($row = $this->model->get_where($this->table,['id_marketing'=>$id])) {
-    $this->temp_backend->set_title('Marketing');
+  if ($row = $this->model->get_where($this->table,['id_portofolio'=>$id])) {
+    $this->temp_backend->set_title('Portofolio');
 
       $data = [
                 'button' => 'edit',
-                'action' => site_url('backend/marketing/update_action/'.$id),
+                'action' => site_url('backend/portofolio/update_action/'.$id),
 								'nama'	=>	set_value('nama',$row->nama),
-								'telepon'	=>	set_value('telepon',$row->telepon),
-								'email'	=>	set_value('email',$row->email),
-								'alamat'	=>	set_value('alamat',$row->alamat),
-                'is_active'	=>	set_value('is_active',$row->is_active),
+								'keterangan'	=>	set_value('keterangan',$row->keterangan),
 							];
 
-    $this->temp_backend->view('content/marketing/form',$data);
+    $this->temp_backend->view('content/portofolio/form',$data);
   }else {
     $this->_error404();
   }
@@ -152,14 +143,10 @@ function update_action($id)
       if ($this->form_validation->run()) {
         $update = [
 										'nama'	=>	$this->input->post('nama',true),
-										'telepon'	=>	$this->input->post('telepon',true),
-										'email'	=>	$this->input->post('email',true),
-										'alamat'	=>	$this->input->post('alamat',true),
-                    'is_active'	=>	$this->input->post('status',true),
-										'modified'	=>	date("Y-m-d h:i:s"),
+										'keterangan'	=>	$this->input->post('keterangan',true),
 									];
 
-        if ($this->model->get_update($this->table,$update,["id_marketing"=>$id])) {
+        if ($this->model->get_update($this->table,$update,["id_portofolio"=>$id])) {
           $json['alert']   = '<div id="alert" class="alert alert-success">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                                 <i class="fa fa-check"></i> Berhasil Mengedit.
@@ -187,7 +174,7 @@ function update_action($id)
 function delete($id)
 {
   if ($this->input->is_ajax_request()) {
-    if ($this->model->get_update($this->table,['is_delete'=>'1'],["id_marketing"=>$id])) {
+    if ($this->model->get_delete($this->table,["id_portofolio"=>$id])) {
       $json['alert']   = '<div id="alert" class="alert alert-success">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                             <i class="fa fa-check"></i> Berhasil Menghapus.
@@ -203,6 +190,62 @@ function delete($id)
 }
 
 
+function delete_image($id)
+{
+  if ($this->input->is_ajax_request()) {
+    $row = $this->model->get_where("image",['id_image'=>$id]);
+    $Path = "./temp/file/".$row->name;
+    if (file_exists($Path)){
+        unlink($Path);
+    }
+
+    if ($this->model->get_delete("image",["id_image"=>$id])) {
+      $json['alert']   = '<div id="alert" class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <i class="fa fa-check"></i> Berhasil Menghapus.
+                          <div>';
+    }else {
+      $json['alert']   = '<div id="alert" class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <i class="fa fa-close"></i> Gagal Menghapus.
+                          <div>';
+    }
+    echo json_encode($json);
+  }
+}
 
 
-} //End Class Marketing
+function do_upload($id)
+      {
+        if ($this->input->is_ajax_request()) {
+            $json = array('success' =>false , "alert"=> array(), "file_name"=>array());
+            $image = "portofolio_".date("dmyHis").".".pathinfo($_FILES['foto_personal']['name'], PATHINFO_EXTENSION);
+            $config['upload_path'] = "./temp/file/";
+            $config['allowed_types'] = 'jpg';
+            $config['overwrite'] = true;
+            $config['max_size']  = '1024';
+            $config['file_name']  = "$image";
+
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('foto_personal')){
+                $json['header_alert'] = "error";
+                $json['alert'] = "File tidak valid, format file harus jpg & ukuran maksimal 1mb";
+            }else {
+                $this->model->get_insert("image",["id_portofolio"=>$id,"name"=>$image]);
+                $json['header_alert'] = "success";
+                $json['file_name'] = $image;
+                $json['alert'] = "File upload successfully.";
+                $json['success'] = true;
+            }
+
+            echo json_encode($json);
+
+      }
+    }
+
+
+
+
+} //End Class Portofolio

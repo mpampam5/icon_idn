@@ -9,15 +9,10 @@
           <div class="widget">
             <h4 class="widget-title">Portofolio</h4>
             <ul class="tag-list">
-              <li><a href="#" class="btn">Web</a></li>
-              <li><a href="#" class="btn">Photography</a></li>
-              <li><a href="#" class="btn">Illustation</a></li>
-              <li><a href="#" class="btn">Fun</a></li>
-              <li><a href="#" class="btn">Blog</a></li>
-              <li><a href="#" class="btn">Commercial</a></li>
-              <li><a href="#" class="btn">Journal</a></li>
-              <li><a href="#" class="btn">Nature</a></li>
-              <li><a href="#" class="btn">Still Life</a></li>
+              <?php $portofolio = $this->db->get("portofolio"); ?>
+              <?php foreach ($portofolio->result() as $portofolio): ?>
+                <li><a href="<?=site_url("portofolio/$portofolio->id_portofolio/$portofolio->nama")?>" class="btn"><?=$portofolio->nama?></a></li>
+              <?php endforeach; ?>
             </ul>
           </div>
           <!-- /.widget -->

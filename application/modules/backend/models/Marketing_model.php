@@ -16,12 +16,11 @@ class Marketing_model extends MY_Model{
 
 	function json()
 	{
-		$this->datatables->select('id_marketing,nama,telepon,email,username,is_active');
+		$this->datatables->select('id_marketing,nama,telepon,email,is_active');
 		$this->datatables->from($this->table);
     $this->datatables->where("is_delete","0");
     $this->datatables->add_column('action',
-                                  '<a href="'.site_url("backend/marketing/reset_pass/$1").'" id="reset_pass" class="btn btn-link p-a-5 text-success" data-toggle="tooltip" data-placement="bottom" title="Reset Password"><i class="fa fa-key"></i></a>
-                                  <a href="'.site_url("backend/marketing/detail/$1").'" id="detail" class="btn btn-link p-a-5 text-info" data-toggle="tooltip" data-placement="bottom" title="Detail"><i class="fa fa-file"></i></a>
+                                  '<a href="'.site_url("backend/marketing/detail/$1").'" id="detail" class="btn btn-link p-a-5 text-info" data-toggle="tooltip" data-placement="bottom" title="Detail"><i class="fa fa-file"></i></a>
                                   <a href="'.site_url("backend/marketing/update/$1").'" id="update" class="btn btn-link p-a-5 text-warning" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-pencil"></i></a>
                                   <a href="'.site_url("backend/marketing/delete/$1").'" id="hapus" class="btn btn-link p-a-5 text-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus"><i class="fa fa-trash"></i></a>',
                                   'id_marketing');

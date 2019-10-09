@@ -49,11 +49,6 @@
                              <td>: <?=$alamat?></td>
                           </tr>
 
-													<tr>
-                             <th>Username</th>
-                             <td>: <?=$username?></td>
-                          </tr>
-
                           <tr>
                              <th>Status</th>
                              <td>:
@@ -88,7 +83,7 @@
 
                      <hr>
 
-                     
+
 
 
                    </div>
